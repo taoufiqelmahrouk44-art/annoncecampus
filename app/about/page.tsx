@@ -6,7 +6,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           <Link href="/">
-            <img src="/logo.jpg" alt="AnnonceCampus" className="h-40 w-auto" />
+            <img src="/logo.jpg" alt="AnnonceCampus" className="h-30 w-auto" />
           </Link>
           <div className="hidden md:flex items-center gap-8">
             {[
@@ -37,7 +37,7 @@ export default function AboutPage() {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         {/* Hero */}
         <div className="text-center mb-16">
-          <img src="/logo.jpg" alt="AnnonceCampus" className="h-20 w-auto mx-auto mb-6" />
+          <img src="/logo.jpg" alt="AnnonceCampus" className="h-40 w-auto mx-auto mb-6" />
           <h1 className="text-4xl font-black text-gray-800 mb-4">À propos d'AnnonceCampus</h1>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             La plateforme de référence pour l'information étudiante au Maroc.
@@ -63,12 +63,12 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { icon: '📰', title: 'Actualités campus', desc: 'Les dernières nouvelles de vos universités' },
-              { icon: '🎉', title: 'Événements étudiants', desc: 'Concerts, conférences, activités et plus' },
-              { icon: '💼', title: 'Opportunités', desc: 'Stages, concours, bourses et offres d\'emploi' },
-              { icon: '📢', title: 'Annonces importantes', desc: 'Informations académiques et administratives' },
-              { icon: '🎓', title: 'Vie étudiante', desc: 'Histoires et expériences de la vie campus' },
-              { icon: '🏙️', title: 'Multi-campus', desc: 'Plusieurs universités et villes bientôt' },
+              { icon: '', title: 'Actualités campus', desc: 'Les dernières nouvelles de vos universités' },
+              { icon: '', title: 'Événements étudiants', desc: 'Concerts, conférences, activités et plus' },
+              { icon: '', title: 'Opportunités', desc: 'Stages, concours, bourses et offres d\'emploi' },
+              { icon: '', title: 'Annonces importantes', desc: 'Informations académiques et administratives' },
+              { icon: '', title: 'Vie étudiante', desc: 'Histoires et expériences de la vie campus' },
+              { icon: '', title: 'Multi-campus', desc: 'Plusieurs universités et villes bientôt' },
             ].map(item => (
               <div key={item.title} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
                 <span className="text-2xl">{item.icon}</span>
@@ -104,7 +104,7 @@ export default function AboutPage() {
 
       <footer className="border-t border-gray-200 mt-20 py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <img src="/logo.jpg" alt="AnnonceCampus" className="h-8 w-auto mx-auto mb-3" />
+          <img src="/logo.jpg" alt="AnnonceCampus" className="h-40 w-auto mx-auto mb-3" />
           <p className="text-gray-400 text-sm">L'info étudiante en temps réel · © {new Date().getFullYear()}</p>
         </div>
       </footer>

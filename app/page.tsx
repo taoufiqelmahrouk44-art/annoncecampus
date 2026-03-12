@@ -351,7 +351,7 @@ export default function HomePage() {
               {[
                 { label: 'À propos', href: '/about' },
                 { label: 'Contact', href: '/contact' },
-                { label: 'Mentions légales', href: '/mentions-legales' },
+                
               ].map(l => (
                 <Link key={l.href} href={l.href} style={{ display: 'block', color: '#94a3b8', fontSize: 14, marginBottom: 12, transition: 'color 0.2s' }}
                   onMouseEnter={e => e.currentTarget.style.color = 'white'}
