@@ -97,7 +97,7 @@ function Navbar({ onMenuOpen }: { onMenuOpen: () => void }) {
           <div style={{ width: 22, height: 2, background: '#1e293b', borderRadius: 2 }} />
           <div style={{ width: 22, height: 2, background: '#1e293b', borderRadius: 2 }} />
         </button>
-        <Link href="/"><img src="/logo.jpg" alt="AnnonceCampus" style={{ height: 80, width: 'auto' }} /></Link>
+        <Link href="/"><img src="/logo.jpg" alt="AnnonceCampus" style={{ height: 100, width: 'auto' }} /></Link>
         <div className="nav-links" style={{ display: 'flex', gap: 2 }}>
           {links.map(item => (
             <Link key={item.href} href={item.href} style={{ color: '#374151', fontSize: 14, fontWeight: 500, padding: '7px 15px', borderRadius: 8, transition: 'all 0.18s', letterSpacing: '0.01em' }}
@@ -326,7 +326,7 @@ export default function HomePage() {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '56px 36px 36px' }}>
           <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 48, marginBottom: 48 }}>
             <div>
-              <img src="/logo.jpg" alt="AnnonceCampus" style={{ height: 800, width: 'auto', marginBottom: 16, filter: 'brightness(0) invert(1)', opacity: 0.9 }} />
+              <img src="/logo.jpg" alt="AnnonceCampus" style={{ height: 100, width: 'auto', marginBottom: 16, filter: 'brightness(0) invert(1)', opacity: 0.9 }} />
               <p style={{ color: '#94a3b8', fontSize: 14, lineHeight: 1.75, maxWidth: 300 }}>
                 La plateforme de référence pour l'information étudiante au Maroc. Actualités, stages, logements et événements campus.
               </p>
