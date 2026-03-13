@@ -64,7 +64,7 @@ function NewsTicker({ posts }: { posts: Post[] }) {
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <span style={{ flexShrink: 0, background: 'white', color: '#7A0019', fontSize: 9, fontWeight: 900, letterSpacing: '0.15em', padding: '3px 12px', margin: '0 20px', textTransform: 'uppercase' }}>LIVE</span>
         <div style={{ overflow: 'hidden', flex: 1 }}>
-          <p style={{ whiteSpace: 'nowrap', color: 'rgba(255,255,255,0.92)', fontSize: 12, animation: 'ticker 40s linear infinite', letterSpacing: '0.03em' }}>
+          <p style={{ whiteSpace: 'nowrap', color: 'rgba(255,255,255,0.92)', fontSize: 12, animation: 'ticker 10s linear infinite', letterSpacing: '0.03em' }}>
             {text} &nbsp;&nbsp;&nbsp;&nbsp; {text}
           </p>
         </div>
@@ -97,7 +97,7 @@ function Navbar({ onMenuOpen }: { onMenuOpen: () => void }) {
           <div style={{ width: 22, height: 2, background: '#1e293b', borderRadius: 2 }} />
           <div style={{ width: 22, height: 2, background: '#1e293b', borderRadius: 2 }} />
         </button>
-        <Link href="/"><img src="/logo.jpg" alt="AnnonceCampus" style={{ height: 100, width: 'auto' }} /></Link>
+        <Link href="/"><img src="/logo.jpg" alt="AnnonceCampus" style={{ height: 120, width: 'auto' }} /></Link>
         <div className="nav-links" style={{ display: 'flex', gap: 2 }}>
           {links.map(item => (
             <Link key={item.href} href={item.href} style={{ color: '#374151', fontSize: 14, fontWeight: 500, padding: '7px 15px', borderRadius: 8, transition: 'all 0.18s', letterSpacing: '0.01em' }}
@@ -116,11 +116,11 @@ function Navbar({ onMenuOpen }: { onMenuOpen: () => void }) {
 // ── Mobile Drawer ─────────────────────────────────────────────────────────────
 function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const links = [
-    { label: 'Accueil', href: '/', icon: '🏠' },
-    { label: 'Actualités', href: '/category/actualites', icon: '📰' },
-    { label: 'Stages', href: '/category/stages', icon: '💼' },
-    { label: 'Logement', href: '/category/logement', icon: '🏡' },
-    { label: 'Événements', href: '/category/evenements', icon: '🎉' },
+    { label: 'Accueil', href: '/', icon: '' },
+    { label: 'Actualités', href: '/category/actualites', icon: '' },
+    { label: 'Stages', href: '/category/stages', icon: '' },
+    { label: 'Logement', href: '/category/logement', icon: '' },
+    { label: 'Événements', href: '/category/evenements', icon: '' },
     { label: 'À propos', href: '/about', icon: 'ℹ️' },
   ]
   if (!open) return null
