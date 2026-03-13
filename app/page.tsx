@@ -121,7 +121,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
     { label: 'Stages', href: '/category/stages', icon: '' },
     { label: 'Logement', href: '/category/logement', icon: '' },
     { label: 'Événements', href: '/category/evenements', icon: '' },
-    { label: 'À propos', href: '/about', icon: 'ℹ️' },
+    { label: 'À propos', href: '/about', icon: '' },
   ]
   if (!open) return null
   return (
@@ -129,7 +129,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
       <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)', zIndex: 200, backdropFilter: 'blur(3px)' }} />
       <div style={{ position: 'fixed', top: 0, left: 0, bottom: 0, width: 290, background: 'white', zIndex: 201, animation: 'drawerIn 0.25s ease', boxShadow: '6px 0 40px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 24px', borderBottom: '1px solid #f1f5f9' }}>
-          <img src="/logo.jpg" alt="AnnonceCampus" style={{ height: 36, width: 'auto' }} />
+          <img src="/logo.jpg" alt="AnnonceCampus" style={{ height: 100, width: 'auto' }} />
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', fontSize: 24, lineHeight: 1, padding: 4 }}>×</button>
         </div>
         <nav style={{ padding: '12px', flex: 1 }}>
