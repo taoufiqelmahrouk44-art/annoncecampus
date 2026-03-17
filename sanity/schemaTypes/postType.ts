@@ -23,15 +23,16 @@ export const postType = defineType({
       title: 'Catégorie',
       type: 'string',
       options: {
-  list: [
-    { title: 'Actualités', value: 'actualites' },
-    { title: 'Événements', value: 'evenements' },
-    { title: 'Stages', value: 'stages' },
-    { title: 'Logement', value: 'logement' },
-    { title: 'Annonces', value: 'annonces' },
-    { title: 'Vie étudiante', value: 'vie-etudiante' },
-  ]
-},
+        list: [
+          { title: 'Actualités', value: 'actualites' },
+          { title: 'Événements', value: 'evenements' },
+          { title: 'Stages', value: 'stages' },
+          { title: 'Logement', value: 'logement' },
+          { title: 'Job Étudiant', value: 'job-etudiant' },
+          { title: 'Annonces', value: 'annonces' },
+          { title: 'Vie étudiante', value: 'vie-etudiante' },
+        ]
+      },
       validation: Rule => Rule.required()
     }),
     defineField({

@@ -22,6 +22,7 @@ const categoryLabels: Record<string, string> = {
   'vie-etudiante': 'Vie étudiante',
   stages: 'Stages',
   logement: 'Logement',
+  'job-etudiant': 'Job Étudiant',
 }
 
 const categoryColors: Record<string, string> = {
@@ -32,6 +33,7 @@ const categoryColors: Record<string, string> = {
   'vie-etudiante': '#7A0019',
   stages: '#1a5276',
   logement: '#1e8449',
+  'job-etudiant': '#b7770d',
 }
 
 const STYLES = `
@@ -86,6 +88,7 @@ function Navbar({ onMenuOpen }: { onMenuOpen: () => void }) {
     { label: 'Actualités', href: '/category/actualites' },
     { label: 'Stages', href: '/category/stages' },
     { label: 'Logement', href: '/category/logement' },
+    { label: 'Job Étudiant', href: '/category/job-etudiant' },
     { label: 'Événements', href: '/category/evenements' },
     { label: 'À propos', href: '/about' },
   ]
@@ -120,6 +123,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
     { label: 'Actualités', href: '/category/actualites', icon: '' },
     { label: 'Stages', href: '/category/stages', icon: '' },
     { label: 'Logement', href: '/category/logement', icon: '' },
+    { label: 'Job Étudiant', href: '/category/job-etudiant', icon: '' },
     { label: 'Événements', href: '/category/evenements', icon: '' },
     { label: 'À propos', href: '/about', icon: '' },
   ]
@@ -318,6 +322,7 @@ export default function HomePage() {
             <Section title="Événements" categoryKey="evenements" posts={byCategory('evenements')} />
             <Section title="Stages" categoryKey="stages" posts={byCategory('stages')} />
             <Section title="Logement" categoryKey="logement" posts={byCategory('logement')} />
+            <Section title="Job Étudiant" categoryKey="job-etudiant" posts={byCategory('job-etudiant')} />
           </>
         )}
       </main>
@@ -337,6 +342,7 @@ export default function HomePage() {
                 { label: 'Actualités', href: '/category/actualites' },
                 { label: 'Stages', href: '/category/stages' },
                 { label: 'Logement', href: '/category/logement' },
+                { label: 'Job Étudiant', href: '/category/job-etudiant' },
                 { label: 'Événements', href: '/category/evenements' },
               ].map(l => (
                 <Link key={l.href} href={l.href} style={{ display: 'block', color: '#94a3b8', fontSize: 14, marginBottom: 12, transition: 'color 0.2s' }}
@@ -351,7 +357,6 @@ export default function HomePage() {
               {[
                 { label: 'À propos', href: '/about' },
                 { label: 'Contact', href: '/contact' },
-                
               ].map(l => (
                 <Link key={l.href} href={l.href} style={{ display: 'block', color: '#94a3b8', fontSize: 14, marginBottom: 12, transition: 'color 0.2s' }}
                   onMouseEnter={e => e.currentTarget.style.color = 'white'}

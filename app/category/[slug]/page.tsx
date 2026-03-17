@@ -23,6 +23,7 @@ const categoryLabels: Record<string, string> = {
   'vie-etudiante': 'Vie étudiante',
   stages: 'Stages',
   logement: 'Logement',
+  'job-etudiant': 'Job Étudiant',
 }
 
 const categoryColors: Record<string, string> = {
@@ -33,7 +34,9 @@ const categoryColors: Record<string, string> = {
   'vie-etudiante': '#b91c1c',
   stages: '#1a5276',
   logement: '#1e8449',
+  'job-etudiant': '#b7770d',
 }
+
 function Navbar() {
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -44,12 +47,13 @@ function Navbar() {
           </Link>
           <div className="hidden md:flex items-center gap-8">
             {[
-            { label: 'Accueil', href: '/' },
-{ label: 'Actualités', href: '/category/actualites' },
-{ label: 'Stages', href: '/category/stages' },
-{ label: 'Logement', href: '/category/logement' },
-{ label: 'Événements', href: '/category/evenements' },
-{ label: 'À propos', href: '/about' },
+              { label: 'Accueil', href: '/' },
+              { label: 'Actualités', href: '/category/actualites' },
+              { label: 'Stages', href: '/category/stages' },
+              { label: 'Logement', href: '/category/logement' },
+              { label: 'Job Étudiant', href: '/category/job-etudiant' },
+              { label: 'Événements', href: '/category/evenements' },
+              { label: 'À propos', href: '/about' },
             ].map(item => (
               <Link key={item.href} href={item.href} className="text-gray-600 hover:text-[#7A0019] text-sm font-medium transition-colors relative group">
                 {item.label}
