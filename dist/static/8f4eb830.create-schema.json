@@ -58,6 +58,10 @@
               "value": "logement"
             },
             {
+              "title": "Job Étudiant",
+              "value": "job-etudiant"
+            },
+            {
               "title": "Annonces",
               "value": "annonces"
             },
@@ -77,6 +81,7 @@
                   "evenements",
                   "stages",
                   "logement",
+                  "job-etudiant",
                   "annonces",
                   "vie-etudiante"
                 ]

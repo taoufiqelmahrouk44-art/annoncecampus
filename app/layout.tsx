@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AnnonceCampus – Actualités, Stages & Vie Étudiante au Maroc",
+  title: "Annonce Campus – Actualités, Stages & Vie Étudiante au Maroc",
   description:
     "AnnonceCampus est la plateforme numéro 1 pour les étudiants marocains : actualités campus, offres de stages, logements étudiants, événements universitaires, bourses d'études et bien plus.",
   metadataBase: new URL("https://annoncecampus.com"),
@@ -76,17 +76,17 @@ export const metadata: Metadata = {
     "annoncecampus plateforme", "annoncecampus site étudiant",
   ],
   openGraph: {
-    title: "AnnonceCampus – Actualités, Stages & Vie Étudiante au Maroc",
+    title: "Annonce Campus – Actualités, Stages & Vie Étudiante au Maroc",
     description:
-      "La plateforme numéro 1 pour les étudiants marocains : stages, logements, événements, actualités campus.",
+      "La plateforme numéro 1 pour les étudiants marocains : stages, logements,job Etudiant , événements, actualités campus.",
     url: "https://annoncecampus.com",
-    siteName: "AnnonceCampus",
+    siteName: "Annonce Campus",
     images: [
       {
         url: "/logo.jpg",
         width: 1200,
         height: 630,
-        alt: "AnnonceCampus",
+        alt: "Annonce Campus",
       },
     ],
     locale: "fr_MA",
@@ -94,7 +94,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AnnonceCampus – Actualités, Stages & Vie Étudiante au Maroc",
+    title: "Annonce Campus – Actualités, Stages & Vie Étudiante au Maroc",
     description:
       "La plateforme numéro 1 pour les étudiants marocains : stages, logements, événements, actualités campus.",
     images: ["/logo.jpg"],
