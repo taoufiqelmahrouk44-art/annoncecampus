@@ -91,6 +91,7 @@ function Navbar({ onMenuOpen }: { onMenuOpen: () => void }) {
     { label: 'Job Étudiant', href: '/category/job-etudiant' },
     { label: 'Événements', href: '/category/evenements' },
     { label: 'À propos', href: '/about' },
+    { label: 'Préparer mon TIPE', href: '/tipe' },
   ]
   return (
     <nav style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(20px)', borderBottom: '1px solid #e8eaed', boxShadow: scrolled ? '0 2px 24px rgba(0,0,0,0.08)' : 'none', transition: 'box-shadow 0.3s' }}>
@@ -126,6 +127,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
     { label: 'Job Étudiant', href: '/category/job-etudiant', icon: '' },
     { label: 'Événements', href: '/category/evenements', icon: '' },
     { label: 'À propos', href: '/about', icon: '' },
+    { label: 'Préparer mon TIPE', href: '/tipe', icon: '' },
   ]
   if (!open) return null
   return (
