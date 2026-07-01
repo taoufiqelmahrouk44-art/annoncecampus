@@ -148,6 +148,33 @@ async function generateReport(transcriptText: string) {
   return data.report as ReportData
 }
 
+async function saveSubmission(opts: {
+  studentName: string
+  studentEmail: string
+  file: File | null
+  transcript: PvEntry[]
+  report: ReportData
+}) {
+  const formData = new FormData()
+  formData.append('studentName', opts.studentName)
+  formData.append('studentEmail', opts.studentEmail)
+  formData.append('transcript', JSON.stringify(opts.transcript))
+  formData.append('report', JSON.stringify(opts.report))
+  if (opts.file) formData.append('pdf', opts.file)
+
+  // Fire-and-forget-ish: don't block the student's experience if this fails,
+  // but log it so it's visible in server logs for debugging.
+  try {
+    const res = await fetch('/api/tipe/submit', { method: 'POST', body: formData })
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      console.error('Sanity save failed:', data.error)
+    }
+  } catch (e) {
+    console.error('Sanity save failed:', e)
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 // PDF text extraction — client-side via pdf.js (free, no server needed)
 // requires: npm install pdfjs-dist
@@ -230,19 +257,21 @@ export default function TipePage() {
     recognizerRef.current = recognizer
 
     if ('speechSynthesis' in window) {
-  const pick = () => {
-    const voices = speechSynthesis.getVoices()
-    const frenchVoices = voices.filter(v => v.lang === 'fr-FR' || v.lang.startsWith('fr'))
-    frenchVoiceRef.current =
-      frenchVoices.find(v => v.name.toLowerCase().includes('google')) ||
-      frenchVoices.find(v => v.name.toLowerCase().includes('natural')) ||
-      frenchVoices.find(v => v.lang === 'fr-FR') ||
-      frenchVoices[0] ||
-      null
-  }
-  speechSynthesis.onvoiceschanged = pick
-  pick()
-}
+      const pick = () => {
+        const voices = speechSynthesis.getVoices()
+        const frenchVoices = voices.filter(v => v.lang === 'fr-FR' || v.lang.startsWith('fr'))
+        // Prefer higher-quality voices (e.g. "Google français") over the
+        // default robotic system voice, when the browser offers them.
+        frenchVoiceRef.current =
+          frenchVoices.find(v => v.name.toLowerCase().includes('google')) ||
+          frenchVoices.find(v => v.name.toLowerCase().includes('natural')) ||
+          frenchVoices.find(v => v.lang === 'fr-FR') ||
+          frenchVoices[0] ||
+          null
+      }
+      speechSynthesis.onvoiceschanged = pick
+      pick()
+    }
   }, [])
 
   function speak(text: string, onEnd: () => void) {
@@ -272,6 +301,7 @@ export default function TipePage() {
         setPresentationText(text)
       }
     } catch (e) {
+      console.error('PDF extraction error:', e)
       setSetupError("Impossible de lire ce PDF. Vérifie que le fichier n'est pas corrompu.")
     } finally {
       setExtracting(false)
@@ -363,6 +393,7 @@ export default function TipePage() {
     try {
       const data = await generateReport(transcriptText)
       setReport(data)
+      saveSubmission({ studentName, studentEmail, file, transcript: log, report: data })
     } catch (e: any) {
       setReportError("Erreur lors de la génération de la correction : " + e.message)
     }
