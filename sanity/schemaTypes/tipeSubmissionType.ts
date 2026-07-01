@@ -68,6 +68,11 @@ export const tipeSubmissionType = defineType({
       title: 'Date de soumission',
       type: 'datetime',
     }),
+    defineField({
+      name: 'completedAt',
+      title: 'Date de fin d\'entretien',
+      type: 'datetime',
+    }),
   ],
   preview: {
     select: {
