@@ -148,30 +148,40 @@ async function generateReport(transcriptText: string) {
   return data.report as ReportData
 }
 
-async function saveSubmission(opts: {
-  studentName: string
-  studentEmail: string
-  file: File | null
-  transcript: PvEntry[]
-  report: ReportData
-}) {
+async function createSubmission(opts: { studentName: string; studentEmail: string; file: File | null }): Promise<string | null> {
   const formData = new FormData()
   formData.append('studentName', opts.studentName)
   formData.append('studentEmail', opts.studentEmail)
-  formData.append('transcript', JSON.stringify(opts.transcript))
-  formData.append('report', JSON.stringify(opts.report))
   if (opts.file) formData.append('pdf', opts.file)
 
-  // Fire-and-forget-ish: don't block the student's experience if this fails,
-  // but log it so it's visible in server logs for debugging.
   try {
     const res = await fetch('/api/tipe/submit', { method: 'POST', body: formData })
+    const data = await res.json()
+    if (!res.ok) {
+      console.error('Sanity create failed:', data.error)
+      return null
+    }
+    return data.id as string
+  } catch (e) {
+    console.error('Sanity create failed:', e)
+    return null
+  }
+}
+
+async function completeSubmission(submissionId: string | null, transcript: PvEntry[], report: ReportData) {
+  if (!submissionId) return
+  try {
+    const res = await fetch('/api/tipe/complete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ submissionId, transcript, report }),
+    })
     if (!res.ok) {
       const data = await res.json().catch(() => ({}))
-      console.error('Sanity save failed:', data.error)
+      console.error('Sanity complete failed:', data.error)
     }
   } catch (e) {
-    console.error('Sanity save failed:', e)
+    console.error('Sanity complete failed:', e)
   }
 }
 
@@ -230,6 +240,7 @@ export default function TipePage() {
 
   const recognizerRef = useRef<any>(null)
   const frenchVoiceRef = useRef<SpeechSynthesisVoice | null>(null)
+  const submissionIdPromiseRef = useRef<Promise<string | null> | null>(null)
 
   useEffect(() => {
     const SpeechRecognitionAPI = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
@@ -317,6 +328,10 @@ export default function TipePage() {
     setThinking(true)
     setStatusText('LE JURY LIT TA PRÉSENTATION')
 
+    // Save name/email/PDF right away — don't wait for the interview to
+    // finish, so we still get the submission even if the student drops off.
+    submissionIdPromiseRef.current = createSubmission({ studentName, studentEmail, file })
+
     const opening = { role: 'user', text: "Commence l'entretien : présente-toi brièvement comme jury (une phrase) puis pose ta première question." }
     try {
       const reply = await askJury(presentationText, [opening])
@@ -393,7 +408,8 @@ export default function TipePage() {
     try {
       const data = await generateReport(transcriptText)
       setReport(data)
-      saveSubmission({ studentName, studentEmail, file, transcript: log, report: data })
+      const submissionId = await submissionIdPromiseRef.current
+      completeSubmission(submissionId, log, data)
     } catch (e: any) {
       setReportError("Erreur lors de la génération de la correction : " + e.message)
     }
